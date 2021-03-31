@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('admin/announcement')->name('announcement.')->group(function () {
+    // index
+    Route::get('', [AnnouncementController::class, 'index'])->name('index'); // announcement.index
+
+    // create
+    Route::get('create', [AnnouncementController::class, 'create'])->name('create'); // announcement.create
+
+    // store
+    Route::post('', [AnnouncementController::class, 'store'])->name('store'); // announcement.store
 });
